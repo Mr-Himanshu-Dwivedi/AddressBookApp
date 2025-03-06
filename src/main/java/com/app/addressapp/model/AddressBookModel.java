@@ -10,7 +10,11 @@ public class AddressBookModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String phone;
+    private String fullName;
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
+    private String phoneNumber;
     private String email;
 }
