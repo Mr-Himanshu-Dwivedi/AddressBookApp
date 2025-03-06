@@ -1,7 +1,7 @@
 package com.app.addressapp.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
+import jakarta.persistence.*;
 
 @Data
 @Entity

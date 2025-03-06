@@ -1,5 +1,6 @@
 package com.app.addressapp.service;
 
+import com.app.addressapp.dto.AddressBookDTO;
 import com.app.addressapp.model.AddressBookModel;
 import com.app.addressapp.repository.AddressBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,30 @@ public class AddressBookServiceImpl implements AddressBookService {
     }
 
     @Override
-    public AddressBookModel createContact(AddressBookModel contact) {
+    public AddressBookModel createContact(AddressBookDTO dto) {
+        AddressBookModel contact = new AddressBookModel();
+        contact.setFullName(dto.getFullName());
+        contact.setStreet(dto.getStreet());
+        contact.setCity(dto.getCity());
+        contact.setState(dto.getState());
+        contact.setZipCode(dto.getZipCode());
+        contact.setPhoneNumber(dto.getPhoneNumber());
+        contact.setEmail(dto.getEmail());
         return repository.save(contact);
     }
 
     @Override
-    public AddressBookModel updateContact(Long id, AddressBookModel contact) {
+    public AddressBookModel updateContact(Long id, AddressBookDTO dto) {
         if (repository.existsById(id)) {
+            AddressBookModel contact = new AddressBookModel();
             contact.setId(id);
+            contact.setFullName(dto.getFullName());
+            contact.setStreet(dto.getStreet());
+            contact.setCity(dto.getCity());
+            contact.setState(dto.getState());
+            contact.setZipCode(dto.getZipCode());
+            contact.setPhoneNumber(dto.getPhoneNumber());
+            contact.setEmail(dto.getEmail());
             return repository.save(contact);
         }
         return null;
