@@ -7,7 +7,8 @@ import lombok.Data;
 
 @Data
 public class AddressBookDTO {
-    @NotBlank(message = "Full Name is required")
+    @Pattern(regexp = "^[A-Z][a-zA-Z ]{2,}$", message = "Full Name must start with a capital letter and have at least 3 characters")
+    @NotBlank(message = "Name is required")
     private String fullName;
 
     @NotBlank(message = "Street is required")
