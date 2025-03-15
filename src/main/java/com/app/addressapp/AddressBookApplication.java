@@ -11,3 +11,5 @@ public class AddressBookApplication {
 	}
 
 }
+
+// to run this on intellij add config and set env var of "USER" and "Password"
