@@ -17,7 +17,7 @@ public class AddressBookController {
     @Autowired
     private AddressBookService service;
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Welcome to the Address Book App!");
     }
