@@ -888,3 +888,32 @@ Caused by: java.sql.SQLException: Access denied for user '${DB_USER}'@'localhost
 2025-03-15 17:45:01 - INFO [http-nio-8080-exec-3] c.a.a.s.AddressBookServiceImpl - Creating contact: Himanshu
 2025-03-15 17:50:11 - INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-03-15 17:50:11 - INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-15 18:02:42 - INFO [restartedMain] c.a.a.AddressBookApplication - Starting AddressBookApplication using Java 21.0.1 with PID 35152 (D:\Bridge_Labz\SpringBoot\SpringAddressBookApp\target\classes started by ĐɆVłⱠ'₴ ₩ØⱤⱠĐ in D:\Bridge_Labz\SpringBoot\SpringAddressBookApp)
+2025-03-15 18:02:42 - DEBUG [restartedMain] c.a.a.AddressBookApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-15 18:02:42 - INFO [restartedMain] c.a.a.AddressBookApplication - The following 1 profile is active: "dev"
+2025-03-15 18:02:43 - INFO [restartedMain] o.a.c.c.StandardService - Starting service [Tomcat]
+2025-03-15 18:02:43 - INFO [restartedMain] o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-15 18:02:44 - INFO [restartedMain] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+2025-03-15 18:02:44 - INFO [restartedMain] o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-15 18:02:44 - INFO [restartedMain] o.h.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-15 18:02:44 - INFO [restartedMain] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-15 18:02:44 - INFO [restartedMain] c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2025-03-15 18:02:44 - INFO [restartedMain] c.z.h.p.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@221acd4e
+2025-03-15 18:02:44 - INFO [restartedMain] c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-15 18:02:44 - WARN [restartedMain] o.h.o.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-15 18:02:44 - WARN [restartedMain] o.h.o.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-15 18:02:45 - INFO [restartedMain] o.h.o.c.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-15 18:02:45 - INFO [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-15 18:02:46 - WARN [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-15 18:02:46 - INFO [restartedMain] c.a.a.AddressBookApplication - Started AddressBookApplication in 4.862 seconds (process running for 5.392)
+2025-03-15 18:03:02 - INFO [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-15 18:03:02 - WARN [http-nio-8080-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.app.addressapp.model.AddressBookModel> com.app.addressapp.controller.AddressBookController.createContact(com.app.addressapp.dto.AddressBookDTO) with 2 errors: [Field error in object 'addressBookDTO' on field 'fullName': rejected value []; codes [NotBlank.addressBookDTO.fullName,NotBlank.fullName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [addressBookDTO.fullName,fullName]; arguments []; default message [fullName]]; default message [Name is required]] [Field error in object 'addressBookDTO' on field 'fullName': rejected value []; codes [Pattern.addressBookDTO.fullName,Pattern.fullName,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [addressBookDTO.fullName,fullName]; arguments []; default message [fullName],[Ljakarta.validation.constraints.Pattern$Flag;@13e545b2,^[A-Z][a-zA-Z ]{2,}$]; default message [Full Name must start with a capital letter and have at least 3 characters]] ]
+2025-03-15 18:05:54 - INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-15 18:05:54 - INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
