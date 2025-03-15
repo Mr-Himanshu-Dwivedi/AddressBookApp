@@ -7,9 +7,11 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class AddressBookController {
@@ -19,36 +21,39 @@ public class AddressBookController {
 
     @GetMapping("/hello")
     public ResponseEntity<String> sayHello() {
+        log.info("Accessed /hello endpoint");
         return ResponseEntity.ok("Welcome to the Address Book App!");
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/all")
     public ResponseEntity<List<AddressBookModel>> getAllContacts() {
+        log.info("Fetching all contacts");
         return ResponseEntity.ok(service.getAllContacts());
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Object> getContact(@PathVariable Long id) {
+    public ResponseEntity<AddressBookModel> getContact(@PathVariable Long id) {
+        log.info("Fetching contact with ID: {}", id);
         AddressBookModel contact = service.getContactById(id);
-        return contact != null ? ResponseEntity.ok(contact) : ResponseEntity.status(404).body("Error: Contact with ID " + id + " not found.");
+        return contact != null ? ResponseEntity.ok(contact) : ResponseEntity.notFound().build();
     }
 
     @PostMapping("/create")
     public ResponseEntity<AddressBookModel> createContact(@Valid @RequestBody AddressBookDTO dto) {
+        log.info("Creating new contact: {}", dto.getFullName());
         return ResponseEntity.ok(service.createContact(dto));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<AddressBookModel> updateContact(@PathVariable Long id, @Valid @RequestBody AddressBookDTO dto) {
+        log.info("Updating contact with ID: {}", id);
         AddressBookModel result = service.updateContact(id, dto);
         return result != null ? ResponseEntity.ok(result) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteContact(@PathVariable Long id) {
-        if (service.getContactById(id) == null) {
-            return ResponseEntity.status(404).body("Error: Contact with ID " + id + " not found.");
-        }
+        log.info("Deleting contact with ID: {}", id);
         service.deleteContact(id);
         return ResponseEntity.ok("Successfully deleted contact with ID: " + id);
     }
