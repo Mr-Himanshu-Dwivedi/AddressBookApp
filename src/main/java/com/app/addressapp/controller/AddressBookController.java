@@ -5,11 +5,12 @@ import com.app.addressapp.model.AddressBookModel;
 import com.app.addressapp.service.AddressBookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -32,10 +33,10 @@ public class AddressBookController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<AddressBookModel> getContact(@PathVariable Long id) {
+    public ResponseEntity<?> getContact(@PathVariable Long id) {
         log.info("Fetching contact with ID: {}", id);
         AddressBookModel contact = service.getContactById(id);
-        return contact != null ? ResponseEntity.ok(contact) : ResponseEntity.notFound().build();
+        return contact != null ? ResponseEntity.ok(contact) : ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Contact with ID " + id + " not found")); // ✅ UC 12: Return 404 if not found
     }
 
     @PostMapping("/create")
@@ -45,15 +46,19 @@ public class AddressBookController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<AddressBookModel> updateContact(@PathVariable Long id, @Valid @RequestBody AddressBookDTO dto) {
+    public ResponseEntity<?> updateContact(@PathVariable Long id, @Valid @RequestBody AddressBookDTO dto) {
         log.info("Updating contact with ID: {}", id);
         AddressBookModel result = service.updateContact(id, dto);
-        return result != null ? ResponseEntity.ok(result) : ResponseEntity.notFound().build();
+        return result != null ? ResponseEntity.ok(result) : ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Contact with ID " + id + " not found")); // ✅ UC 12: Return 404 if not found
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteContact(@PathVariable Long id) {
         log.info("Deleting contact with ID: {}", id);
+        if (service.getContactById(id) == null) {
+            log.warn("Contact with ID {} not found for deletion", id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Contact with ID " + id + " not found for deletion"); // ✅ UC 12: Return 404 if not found
+        }
         service.deleteContact(id);
         return ResponseEntity.ok("Successfully deleted contact with ID: " + id);
     }

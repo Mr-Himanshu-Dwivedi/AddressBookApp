@@ -1,4 +1,5 @@
-package com.app.addressapp.controller;
+// GlobalExceptionHandler.java
+package com.app.addressapp.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,5 +21,9 @@ public class GlobalExceptionHandler {
             errors.put(error.getField(), error.getDefaultMessage());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<String> handleNotFoundException(NullPointerException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Requested contact not found");
     }
 }
